@@ -1,18 +1,21 @@
-function wait() {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(
-        () => resolve(),
-        1000
-      )
+
+const makePromise = () => (
+    new Promise((resolve, reject) => {
+  
+      const number = Math.random()
+  
+      if (number < 0.5) {
+        resolve(number)
+      } else {
+        reject(number)
+      }
+  
     })
+  )
   
-    return promise
-  }
+  makePromise()
+    .then(resolvedValue => console.log(resolvedValue))
+    .catch(rejectedValue => console.error(rejectedValue))
+    .finally(() => console.log('Randomized!'))
   
-  wait()
-    .then(() => console.log(1))
-    .then(() => wait())
-    .then(() => console.log(2))
-    .then(() => wait())
-    .then(() => console.log(3))
-  
+  console.log('Only numbers < 0.5 are resolved!')

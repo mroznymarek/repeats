@@ -1,10 +1,18 @@
 function Shape(color) {
-    this.element = document.createElement('div')
-    this.color = color
+    if (this !== window) {
+        this.element = document.createElement('div')
+        this.color = color
 
-    this.append = function () {
-        document.body.appendChild(this.element)
+    } else {
+        const obj = Object.create(Shape.prototype)
+
+        Shape.call(obj, color)
+
+        return obj
     }
+}
+Shape.prototype.append = function () {
+    document.body.appendChild(this.element)
 }
 
 const shape1 = new Shape('blue')

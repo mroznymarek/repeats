@@ -1,23 +1,12 @@
-class Shape {
-    constructor(color) {
-        this.element = document.createElement('div')
-        this.color = color
-    }
-    append() {
-        document.body.appendChild(this.element)
-    }
-}
+const promise = new Promise((resolve, reject) => {
+    setTimeout(
+        () => resolve(),
+        1000
+    )
+})
 
-class Circle extends Shape {
-    constructor(color) {
-        super(color)
+promise
+    .then(() => console.log(1))
 
-        this.element.style.backgroundColor = color
-        this.element.style.width = '100px'
-        this.element.style.height = '100px'
-        this.element.style.borderRadius = '50%'
-    }
-   roundCorners() { }
-}
-
-const circle1 = new Circle('blue')
+promise
+    .then(() => console.log(2))
